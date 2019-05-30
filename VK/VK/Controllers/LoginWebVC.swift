@@ -47,18 +47,45 @@ class LoginWebVC: UIViewController {
     
     func loadGroups(token: String) {
         let baseUrl = "https://api.vk.com"
-        let path = "/method/groups.get"
+        let pathFriends = "/method/friends.get"
+        let pathPhotos = "/method/photos.getAll"
+        let pathGroups = "/method/groups.get"
+        let pathGroupsSearch = "/method/groups.search"
+        let search = "?q=Neftekamsk"
+        
         
         let params: Parameters = [
             "access_token": token,
             "extended": 1,
             "v": "5.95"
         ]
-        
-        LoginWebVC.session.request(baseUrl + path, method: .get, parameters: params).responseJSON { response in
-            guard let json = response.value else { return }
-            
-            print(json)
+
+        LoginWebVC.session.request(baseUrl + pathFriends, method: .get, parameters: params).responseJSON
+            { response in
+            guard let jsonFriends = response.value else { return }
+
+            print(jsonFriends)
+        }
+
+        LoginWebVC.session.request(baseUrl + pathPhotos, method: .get, parameters: params).responseJSON
+            { response in
+                guard let jsonPhotos = response.value else { return }
+
+                print(jsonPhotos)
+        }
+
+        LoginWebVC.session.request(baseUrl + pathGroups, method: .get, parameters: params).responseJSON
+            { response in
+            guard let jsonGroups = response.value else { return }
+
+            print(jsonGroups)
+        }
+
+        LoginWebVC.session.request(baseUrl + pathGroupsSearch + search, method: .get, parameters:                                         params).responseJSON
+            { response in
+                guard let jsonGroupsSearch = response.value else { return }
+                
+                print(jsonGroupsSearch)
         }
     }
     
