@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7Qa-C9-spE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8lm-xK-4J2">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,7 +13,7 @@
         <!--Log In Controller-->
         <scene sceneID="ogn-zA-rPg">
             <objects>
-                <viewController id="7Qa-C9-spE" customClass="LogInController" customModule="VK__Zavyalov_Konstantin_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7Qa-C9-spE" customClass="LogInController" customModule="VK" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jRZ-qq-bae">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -171,12 +171,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="twp-RO-q9b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1198.5507246376812" y="-291.96428571428572"/>
+            <point key="canvasLocation" x="1194" y="-615"/>
         </scene>
         <!--My Groups-->
         <scene sceneID="8h3-hC-TcX">
             <objects>
-                <viewController id="aW7-xb-y2Z" customClass="GroupsViewController" customModule="VK__Zavyalov_Konstantin_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="aW7-xb-y2Z" customClass="GroupsViewController" customModule="VK" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tr7-pf-lLw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -191,7 +191,7 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GroupCell" rowHeight="87" id="uJ4-km-2Oe" customClass="GroupCell" customModule="VK__Zavyalov_Konstantin_" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GroupCell" rowHeight="87" id="uJ4-km-2Oe" customClass="GroupCell" customModule="VK" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="414" height="87"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uJ4-km-2Oe" id="bCd-vJ-bGJ">
@@ -257,13 +257,13 @@
         <!--Group MoreTVC-->
         <scene sceneID="Rfn-wI-jQb">
             <objects>
-                <tableViewController id="5vt-lX-VNT" customClass="GroupMoreTVC" customModule="VK__Zavyalov_Konstantin_" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="5vt-lX-VNT" customClass="GroupMoreTVC" customModule="VK" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ejl-DD-XaG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupMoreCell" rowHeight="92" id="eNH-vO-2LL" customClass="GroupMoreCell" customModule="VK__Zavyalov_Konstantin_" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupMoreCell" rowHeight="92" id="eNH-vO-2LL" customClass="GroupMoreCell" customModule="VK" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="92"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eNH-vO-2LL" id="Fe3-jJ-Abr">
@@ -314,7 +314,7 @@
         <!--My Frends-->
         <scene sceneID="sUp-Ua-ZqC">
             <objects>
-                <viewController id="FLc-nJ-RMQ" customClass="FriendsViewController" customModule="VK__Zavyalov_Konstantin_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="FLc-nJ-RMQ" customClass="FriendsViewController" customModule="VK" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="v5R-mq-ISf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -329,14 +329,14 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FrendCell" rowHeight="85" id="Bdl-Sr-BQG" customClass="FrendCell" customModule="VK__Zavyalov_Konstantin_" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FrendCell" rowHeight="85" id="Bdl-Sr-BQG" customClass="FrendCell" customModule="VK" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="414" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bdl-Sr-BQG" id="ScG-Y4-otz">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="84.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="doG-sF-fFd" customClass="ShadowView" customModule="VK__Zavyalov_Konstantin_" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="doG-sF-fFd" customClass="ShadowView" customModule="VK" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="10" width="60" height="60"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
@@ -396,7 +396,7 @@
         <!--Friends Photo View Controller-->
         <scene sceneID="sPM-cy-Ho6">
             <objects>
-                <collectionViewController id="hvw-JM-Iqh" customClass="FriendsPhotoViewController" customModule="VK__Zavyalov_Konstantin_" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="hvw-JM-Iqh" customClass="FriendsPhotoViewController" customModule="VK" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="jm8-1O-wrl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -408,7 +408,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FrendPhotoCell" id="wPr-jh-fFA" customClass="FrendPhotoCell" customModule="VK__Zavyalov_Konstantin_" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FrendPhotoCell" id="wPr-jh-fFA" customClass="FrendPhotoCell" customModule="VK" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -422,7 +422,7 @@
                                                 <constraint firstAttribute="width" constant="125" id="wgL-uj-fKe"/>
                                             </constraints>
                                         </imageView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W1W-i4-aGv" customClass="LikeControl" customModule="VK__Zavyalov_Konstantin_" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W1W-i4-aGv" customClass="LikeControl" customModule="VK" customModuleProvider="target">
                                             <rect key="frame" x="2" y="93" width="60" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="Mk2-h8-YDu"/>
@@ -452,6 +452,40 @@
             </objects>
             <point key="canvasLocation" x="4670" y="-615"/>
         </scene>
+        <!--Login WebVC-->
+        <scene sceneID="ahK-3Y-wtD">
+            <objects>
+                <viewController id="8lm-xK-4J2" customClass="LoginWebVC" customModule="VK" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tcC-dp-6am">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vQe-qS-RLr">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="vQe-qS-RLr" firstAttribute="trailing" secondItem="HMc-h5-HAg" secondAttribute="trailing" id="O51-XH-FfI"/>
+                            <constraint firstItem="vQe-qS-RLr" firstAttribute="leading" secondItem="HMc-h5-HAg" secondAttribute="leading" id="QaO-g1-eDo"/>
+                            <constraint firstItem="vQe-qS-RLr" firstAttribute="top" secondItem="tcC-dp-6am" secondAttribute="top" id="fgR-hw-tNp"/>
+                            <constraint firstAttribute="bottom" secondItem="vQe-qS-RLr" secondAttribute="bottom" id="s5v-2r-yG7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="HMc-h5-HAg"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="vQe-qS-RLr" id="ccc-z0-vOG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5IB-OM-vAQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1192.753623188406" y="30.803571428571427"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Ey4-BT-50E">
             <objects>
@@ -475,7 +509,7 @@
         <!--Друзья-->
         <scene sceneID="XMX-pO-0j1">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Kmb-Pd-Yia" customClass="CustomNavigationController" customModule="VK__Zavyalov_Konstantin_" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Kmb-Pd-Yia" customClass="CustomNavigationController" customModule="VK" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Друзья" image="IconFrends" springLoaded="YES" id="Zhs-q9-TGd"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bcG-D5-ZSF">
@@ -494,7 +528,7 @@
         <!--Моя музыка  🎧-->
         <scene sceneID="MKM-fF-ARu">
             <objects>
-                <viewController id="l51-YK-TLB" customClass="MusicVC" customModule="VK__Zavyalov_Konstantin_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="l51-YK-TLB" customClass="MusicVC" customModule="VK" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sz5-TF-vSQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -504,7 +538,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MusicCell" rowHeight="82" id="Aer-6g-Yyx" customClass="MusicCell" customModule="VK__Zavyalov_Konstantin_" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MusicCell" rowHeight="82" id="Aer-6g-Yyx" customClass="MusicCell" customModule="VK" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="82"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Aer-6g-Yyx" id="R4m-7M-emJ">
@@ -591,7 +625,7 @@
         <!--Новости ⚡️-->
         <scene sceneID="EEk-Mm-uwY">
             <objects>
-                <viewController id="NYV-fR-j5u" customClass="NewsVC" customModule="VK__Zavyalov_Konstantin_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="NYV-fR-j5u" customClass="NewsVC" customModule="VK" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dUh-k2-awK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -600,7 +634,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewsCell" rowHeight="553" id="alD-48-YHh" customClass="NewsCell" customModule="VK__Zavyalov_Konstantin_" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewsCell" rowHeight="553" id="alD-48-YHh" customClass="NewsCell" customModule="VK" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="553"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="alD-48-YHh" id="DpX-Or-CXf">
@@ -626,7 +660,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GOV-4g-AED" customClass="LikeControl" customModule="VK__Zavyalov_Konstantin_" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GOV-4g-AED" customClass="LikeControl" customModule="VK" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="512.5" width="60" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="53x-vc-MmE"/>
@@ -663,7 +697,7 @@
                                                     <state key="normal" backgroundImage="PO"/>
                                                     <connections>
                                                         <action selector="TapAnimationButton:" destination="alD-48-YHh" eventType="touchUpInside" id="nDl-fO-mEw"/>
-                                                        <segue destination="ob1-Jt-N8D" kind="custom" identifier="Show photo full size" customClass="CustomSegue" customModule="VK__Zavyalov_Konstantin_" customModuleProvider="target" id="M2V-ZD-SzP"/>
+                                                        <segue destination="ob1-Jt-N8D" kind="custom" identifier="Show photo full size" customClass="CustomSegue" customModule="VK" customModuleProvider="target" id="M2V-ZD-SzP"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -725,7 +759,7 @@
         <!--Photo Full SizeVC-->
         <scene sceneID="ETm-9x-Dab">
             <objects>
-                <viewController modalPresentationStyle="overFullScreen" id="ob1-Jt-N8D" customClass="PhotoFullSizeVC" customModule="VK__Zavyalov_Konstantin_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overFullScreen" id="ob1-Jt-N8D" customClass="PhotoFullSizeVC" customModule="VK" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5gc-mb-Nn5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -751,7 +785,7 @@
         <!--Группы-->
         <scene sceneID="ZG4-qV-5Sh">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="avX-ae-x9A" customClass="CustomNavigationController" customModule="VK__Zavyalov_Konstantin_" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="avX-ae-x9A" customClass="CustomNavigationController" customModule="VK" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Группы" image="iconGroups" id="ymM-mt-XIs"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aj7-EX-gWO">
@@ -770,7 +804,7 @@
         <!--Музыка-->
         <scene sceneID="fYD-oL-M68">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mcf-Ug-nDq" customClass="CustomNavigationController" customModule="VK__Zavyalov_Konstantin_" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mcf-Ug-nDq" customClass="CustomNavigationController" customModule="VK" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Музыка" image="iconMusic" id="BxK-MO-pRE"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Qdg-cS-KFM">

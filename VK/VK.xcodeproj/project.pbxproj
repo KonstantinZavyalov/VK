@@ -10,6 +10,8 @@
 		4250DACC1B5782D5447D815D /* Pods_VK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76823A4557656894B3EC9083 /* Pods_VK.framework */; };
 		4413A24E22A02BEF006F7C14 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 4413A24D22A02BEF006F7C14 /* Podfile */; };
 		4413A25022A03D9F006F7C14 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4413A24F22A03D9F006F7C14 /* SwiftyJSON.framework */; };
+		4413A25222A04587006F7C14 /* LoginWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4413A25122A04587006F7C14 /* LoginWebVC.swift */; };
+		4413A25422A046E7006F7C14 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4413A25322A046E7006F7C14 /* WebKit.framework */; };
 		442B0088225E4790005C6F4F /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442B0087225E4790005C6F4F /* Friends.swift */; };
 		442B008B225E48D8005C6F4F /* FrendPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442B008A225E48D8005C6F4F /* FrendPhotoViewController.swift */; };
 		442B008D225E4BF5005C6F4F /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442B008C225E4BF5005C6F4F /* Group.swift */; };
@@ -46,6 +48,8 @@
 		393B5E760D22E42C63C3C59B /* Pods-VK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK.debug.xcconfig"; path = "Target Support Files/Pods-VK/Pods-VK.debug.xcconfig"; sourceTree = "<group>"; };
 		4413A24D22A02BEF006F7C14 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		4413A24F22A03D9F006F7C14 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4413A25122A04587006F7C14 /* LoginWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWebVC.swift; sourceTree = "<group>"; };
+		4413A25322A046E7006F7C14 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		442B0087225E4790005C6F4F /* Friends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friends.swift; sourceTree = "<group>"; };
 		442B008A225E48D8005C6F4F /* FrendPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrendPhotoViewController.swift; sourceTree = "<group>"; };
 		442B008C225E4BF5005C6F4F /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
@@ -87,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4413A25422A046E7006F7C14 /* WebKit.framework in Frameworks */,
 				4413A25022A03D9F006F7C14 /* SwiftyJSON.framework in Frameworks */,
 				4250DACC1B5782D5447D815D /* Pods_VK.framework in Frameworks */,
 			);
@@ -183,6 +188,7 @@
 				44EF869922835C0F00AE141C /* AppleAnimation.swift */,
 				44470AC7225E4524006E065F /* Cell */,
 				4445254622520D6A00F2CA3A /* LogInController.swift */,
+				4413A25122A04587006F7C14 /* LoginWebVC.swift */,
 				44C8D319225BCC3B006C6705 /* FriendsViewController.swift */,
 				442B008A225E48D8005C6F4F /* FrendPhotoViewController.swift */,
 				44C8D31B225BCC4A006C6705 /* GroupsViewController.swift */,
@@ -197,6 +203,7 @@
 		E2BF55E601FA49BBADFA05D4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4413A25322A046E7006F7C14 /* WebKit.framework */,
 				4413A24F22A03D9F006F7C14 /* SwiftyJSON.framework */,
 				76823A4557656894B3EC9083 /* Pods_VK.framework */,
 			);
@@ -334,6 +341,7 @@
 				446708AB22671A34006C40F9 /* LikeControl.swift in Sources */,
 				4498622F22677F91006A2424 /* MusicCell.swift in Sources */,
 				445D589A227359A5008E8EC3 /* NewsCell.swift in Sources */,
+				4413A25222A04587006F7C14 /* LoginWebVC.swift in Sources */,
 				44BEEBAB2260B2820010EABC /* GroupCell.swift in Sources */,
 				44F9B35D2288627B00227ADE /* CustomNavigationController.swift in Sources */,
 				445932D422902DBA00070A72 /* Session.swift in Sources */,
