@@ -7,16 +7,20 @@
 //
 
 import UIKit
+import Kingfisher
 
-class GroupsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class GroupsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    public var groups: [Group] = [
-        Group(name: "Swift", groupImageView: UIImage(named: "Swift")),
-        Group(name:"Objective-C", groupImageView: UIImage(named: "Objective_c")),
-        Group(name: "Python", groupImageView: UIImage(named: "Python")),
-        Group(name: "Go", groupImageView: UIImage(named: "Golang"))
-    ]
-    var filterGroups = [Group]()
+    let request = NetworkingService()
+    private var groupList = [CodableGroup]()
+    
+    @IBOutlet weak var searchBar: UISearchBar! {
+        didSet {
+            searchBar.delegate = self
+        }
+    }
+    
+    private var filteredGroupList = [CodableGroup]()
     
     @IBOutlet var tableView: UITableView! {
         didSet {
@@ -25,86 +29,65 @@ class GroupsViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
-    @IBOutlet weak var searchBar: UISearchBar! {
-        didSet {
-            searchBar.delegate = self
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        request.userGroups { result in
+            switch result {
+            case .success(let groupList):
+                self.groupList = groupList
+                self.filteredGroupList = self.groupList
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        filterGroups = groups
+        
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(dissmissKeyboard))
+        view.addGestureRecognizer(tapGR)
+    }
+    
+    private func filterGroups(with text: String) {
+        filteredGroupList = groupList.filter { group in
+            return group.groupName.lowercased().contains(text.lowercased())
+        }
         tableView.reloadData()
     }
+    
+    @objc func dissmissKeyboard() {
+        view.endEditing(true)
+    }
+    
     
     // MARK: - Table view data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return filterGroups.count
+        return filteredGroupList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: GroupCell.reuseId, for: indexPath) as? GroupCell else { fatalError("Cell cannot be dequeued") }
         
-        cell.nameGroupLabel.text = filterGroups[indexPath.row].name
-        if let image = filterGroups[indexPath.row].groupImageView {
-            cell.myGroupImage.image = image
-        }
+        cell.nameGroupLabel.text = filteredGroupList[indexPath.row].groupName
+        cell.myGroupImage.kf.setImage(with: URL(string: filteredGroupList[indexPath.row].groupImage))
+        
         return cell
     }
     
-    private func filterGroups(with text: String) {
-        filterGroups = groups.filter( {Group -> Bool in
-            return Group.name.lowercased().contains(text.lowercased())
-        })
-    }
-    
-    // Override to support editing the table view.
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            let group = filterGroups.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            
-            if let index = groups.firstIndex(where: { $0.name == group.name }) {
-                groups.remove(at: index)
-            }
-        }
-    }
-    
-    @IBAction func addGroup(segue: UIStoryboardSegue) {
-        
-        if let groupMoreTVC = segue.source as? GroupMoreTVC,
-            let indexPath = groupMoreTVC.tableView.indexPathForSelectedRow {
-            let newGroup = groupMoreTVC.groupsMore[indexPath.row]
-            
-            guard !groups.contains(where: { group -> Bool in
-                return group.name == newGroup.name
-            }) else { return }
-            
-            self.groups.append(newGroup)
-            filterGroups.append(newGroup)
-            let newIndexPath = IndexPath(item: filterGroups.count-1, section: 0)
-            tableView.insertRows(at: [newIndexPath], with: .automatic)
-            tableView.reloadData()
-        }
-    }
-    
+}
+
+extension GroupsViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        guard !searchText.isEmpty else {
-            filterGroups = groups
+        if searchText.isEmpty {
+            filteredGroupList = groupList
+            view.endEditing(true)
             tableView.reloadData()
             return
         }
-        
         filterGroups(with: searchText)
-        tableView.reloadData()
     }
-    
-    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-    }
-    
 }

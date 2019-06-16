@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class FrendCell: UITableViewCell {
     
@@ -14,12 +15,6 @@ class FrendCell: UITableViewCell {
     
     @IBOutlet var nameFrendLabel: UILabel!
     @IBOutlet var avatarFrendImage: UIImageView!
-    
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
     
     override func layoutSubviews() {
         super.layoutSubviews()

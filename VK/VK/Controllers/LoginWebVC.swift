@@ -8,7 +8,6 @@
 
 import UIKit
 import WebKit
-import Alamofire
 
 class LoginWebVC: UIViewController {
     
@@ -37,58 +36,6 @@ class LoginWebVC: UIViewController {
         let request = URLRequest(url: components.url!)
         webView.load(request)
     }
-    
-    static let session: SessionManager = {
-        let config = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = 60
-        let session = SessionManager(configuration: config)
-        return session
-    }()
-    
-    func loadGroups(token: String) {
-        let baseUrl = "https://api.vk.com"
-        let pathFriends = "/method/friends.get"
-        let pathPhotos = "/method/photos.getAll"
-        let pathGroups = "/method/groups.get"
-        let pathGroupsSearch = "/method/groups.search"
-        let search = "?q=Neftekamsk"
-        
-        
-        let params: Parameters = [
-            "access_token": token,
-            "extended": 1,
-            "v": "5.95"
-        ]
-
-        LoginWebVC.session.request(baseUrl + pathFriends, method: .get, parameters: params).responseJSON
-            { response in
-            guard let jsonFriends = response.value else { return }
-
-            print(jsonFriends)
-        }
-
-        LoginWebVC.session.request(baseUrl + pathPhotos, method: .get, parameters: params).responseJSON
-            { response in
-                guard let jsonPhotos = response.value else { return }
-
-                print(jsonPhotos)
-        }
-
-        LoginWebVC.session.request(baseUrl + pathGroups, method: .get, parameters: params).responseJSON
-            { response in
-            guard let jsonGroups = response.value else { return }
-
-            print(jsonGroups)
-        }
-
-        LoginWebVC.session.request(baseUrl + pathGroupsSearch + search, method: .get, parameters:                                         params).responseJSON
-            { response in
-                guard let jsonGroupsSearch = response.value else { return }
-                
-                print(jsonGroupsSearch)
-        }
-    }
-    
 }
 
 extension LoginWebVC: WKNavigationDelegate {
@@ -114,14 +61,14 @@ extension LoginWebVC: WKNavigationDelegate {
             let userIdString = params["user_id"],
             let userId = Int(userIdString) else {
                 decisionHandler(.allow)
-                return
+            return
         }
         
-        Session.instance.token = token
-        Session.instance.userId = userId
+        Account.shared.token = token
+        Account.shared.userId = userId
         // performSegue(withIdentifier:)
         
-        LoginWebVC().loadGroups(token: token)
+        performSegue(withIdentifier: "Show Main Screen", sender: self)
         
         decisionHandler(.cancel)
     }

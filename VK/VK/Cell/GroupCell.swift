@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class GroupCell: UITableViewCell {
     
@@ -15,12 +16,9 @@ class GroupCell: UITableViewCell {
     @IBOutlet var nameGroupLabel: UILabel!
     @IBOutlet var myGroupImage: UIImageView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        myGroupImage.layer.cornerRadius = myGroupImage.bounds.height/2
     }
 }
