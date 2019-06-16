@@ -12,7 +12,7 @@ class NewsVC: UIViewController, UITableViewDataSource {
     
 
     public var newspapper: [News] = [
-    News(avatarImageView: UIImage(named: "Swift"), nameGroup: "Swift", description: "Сегодня мы ввели нововведения!")
+        News(avatarImageView: UIImage(named: "Swift")!, nameGroup: "Swift", descript: "Сегодня мы ввели нововведения!")
     ]
     
     

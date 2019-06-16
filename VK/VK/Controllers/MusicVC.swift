@@ -11,17 +11,17 @@ import UIKit
 class MusicVC: UIViewController, UITableViewDataSource {
     
     public var playList: [Music] = [
-        Music(name: "Novella", coverImageView: UIImage(named: "backgraund"), duration: "03:17"),
-        Music(name: "Rockstar", coverImageView: UIImage(named: "backgraund"), duration: "04:02"),
-        Music(name: "Drunk Groove", coverImageView: UIImage(named: "backgraund"), duration: "03:58"),
-        Music(name: "Jonas Brothers", coverImageView: UIImage(named: "backgraund"), duration: "02:43"),
-        Music(name: "Dua Lipa & BLACKPINK", coverImageView: UIImage(named: "backgraund"), duration: "03:55"),
-        Music(name: "Rita Ora", coverImageView: UIImage(named: "backgraund"), duration: "03:36"),
-        Music(name: "Самоучитель Swift 856 издание", coverImageView: UIImage(named: "backgraund"), duration: "93:56"),
-        Music(name: "LP", coverImageView: UIImage(named: "backgraund"), duration: "04:12"),
-        Music(name: "Artik & Asti", coverImageView: UIImage(named: "backgraund"), duration: "02:38"),
-        Music(name: "MARUV", coverImageView: UIImage(named: "backgraund"), duration: "03:47"),
-        Music(name: "Arnon", coverImageView: UIImage(named: "backgraund"), duration: "03:03")
+        Music(name: "Novella", coverImageView: UIImage(named: "backgraund")!, duration: "03:17"),
+        Music(name: "Rockstar", coverImageView: UIImage(named: "backgraund")!, duration: "04:02"),
+        Music(name: "Drunk Groove", coverImageView: UIImage(named: "backgraund")!, duration: "03:58"),
+        Music(name: "Jonas Brothers", coverImageView: UIImage(named: "backgraund")!, duration: "02:43"),
+        Music(name: "Dua Lipa & BLACKPINK", coverImageView: UIImage(named: "backgraund")!, duration: "03:55"),
+        Music(name: "Rita Ora", coverImageView: UIImage(named: "backgraund")!, duration: "03:36"),
+        Music(name: "Самоучитель Swift 856 издание", coverImageView: UIImage(named: "backgraund")!, duration: "93:56"),
+        Music(name: "LP", coverImageView: UIImage(named: "backgraund")!, duration: "04:12"),
+        Music(name: "Artik & Asti", coverImageView: UIImage(named: "backgraund")!, duration: "02:38"),
+        Music(name: "MARUV", coverImageView: UIImage(named: "backgraund")!, duration: "03:47"),
+        Music(name: "Arnon", coverImageView: UIImage(named: "backgraund")!, duration: "03:03")
     ]
     
     @IBOutlet var tableView: UITableView! {
