@@ -7,10 +7,23 @@
 //
 
 import UIKit
-
+//import RealmSwift
+//
+//class News: Object {
+//    @objc dynamic var avatarImageView: UIImage?
+//    @objc dynamic var nameGroup: String = ""
+//    @objc dynamic var descript: String = ""
+//
+//    convenience init(avatarImageView: UIImage, nameGroup: String, descript: String) {
+//        self.init()
+//        self.avatarImageView = avatarImageView
+//        self.nameGroup = nameGroup
+//        self.descript = descript
+//    }
+//
+//}
 struct News {
     let avatarImageView: UIImage?
     let nameGroup: String
-    let description: String
-    //let addDescriptionImageView: UIImage?
+    let descript: String
 }

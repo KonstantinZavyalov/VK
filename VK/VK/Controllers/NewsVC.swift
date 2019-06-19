@@ -12,7 +12,7 @@ class NewsVC: UIViewController, UITableViewDataSource {
     
 
     public var newspapper: [News] = [
-    News(avatarImageView: UIImage(named: "Swift"), nameGroup: "Swift", description: "Сегодня мы ввели нововведения!")
+        News(avatarImageView: UIImage(named: "Swift")!, nameGroup: "Swift", descript: "Сегодня мы ввели нововведения!")
     ]
     
     
@@ -38,7 +38,7 @@ class NewsVC: UIViewController, UITableViewDataSource {
             cell.avatarImageView.image = image
         }
         cell.nameGroupLabel.text = newspapper[indexPath.row].nameGroup
-        cell.descriptionLabel.text = newspapper[indexPath.row].description
+        cell.descriptionLabel.text = newspapper[indexPath.row].descript
 //        if let image = newspapper[indexPath.row].addDescriptionImageView {
 //            cell.addDescriptionImageView.image = image
 //        }

@@ -6,9 +6,25 @@
 //  Copyright © 2019 Mac. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import SwiftyJSON
+import RealmSwift
 
-struct Group {
-    let name: String
-    let groupImageView: UIImage?
+@objcMembers
+class Group: Object {
+    dynamic var id: Int = 0
+    dynamic var groupName: String = ""
+    dynamic var groupImage: String = ""
+    
+    convenience init(_ json: JSON) {
+        self.init()
+        
+        self.id = json["id"].intValue
+        self.groupName = json["name"].stringValue
+        self.groupImage = json["photo_200"].stringValue
+    }
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }

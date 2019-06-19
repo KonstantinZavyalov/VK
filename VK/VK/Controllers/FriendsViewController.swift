@@ -7,19 +7,14 @@
 //
 
 import UIKit
+import Kingfisher
+import RealmSwift
 
-class FriendsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class FriendsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    
-    var friendsDictionary = [String : [String]]()
-    var friendsSectionTitles = [String]()
-    var filterFriends = [Firend]()
-    public var friends: [Firend] = [
-        Firend(name: "Bazilio", avatarImageView: UIImage(named: "Kot_Bazilio")),
-        Firend(name: "Maks", avatarImageView: UIImage(named: "Maks")),
-        Firend(name: "Roberto", avatarImageView: UIImage(named: "Minion")),
-        Firend(name: "PO", avatarImageView: UIImage(named: "PO"))
-    ]
+    let vkRequest = NetworkingService()
+    //let realm = try! Realm()
+    private var friendsList: Results<FriendProfile> = try! Realm().objects(FriendProfile.self)
     
     @IBOutlet var tableView: UITableView! {
         didSet {
@@ -27,112 +22,57 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
             tableView.delegate = self
         }
     }
-    @IBOutlet weak var searchBar: UISearchBar!
-    
-    fileprivate func sortFriends() {
-        
-        friendsDictionary = [:]
-        friendsSectionTitles = []
-        
-        for friend in filterFriends {
-            let friendKey = String(friend.name.prefix(1))
-            if var friendValues = friendsDictionary[friendKey] {
-                friendValues.append(friend.name)
-                friendsDictionary[friendKey] = friendValues
-            } else {
-                friendsDictionary[friendKey] = [friend.name]
-            }
-        }
-        
-        friendsSectionTitles = [String](friendsDictionary.keys)
-        friendsSectionTitles = friendsSectionTitles.sorted { $0 < $1 }
-        tableView.reloadData()
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpSearchBar()
         
-        filterFriends = friends.sorted { $0.name < $1.name }
-        sortFriends()
+        vkRequest.loadFriends { result in
+            switch result {
+            case .success(let friendList):
+                let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
+                let realm = try! Realm(configuration: config)
+                
+                try! realm.write {
+                    realm.add(friendList, update: .modified)
+                }
+                print(realm.configuration.fileURL!)
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
-    private func setUpSearchBar() {
-        searchBar.delegate = self
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return friendsSectionTitles.count
-    }
-    
-    // MARK: - Table view data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        //Sorted by letters
-        let frendKey = friendsSectionTitles[section]
-        if let frendValues = friendsDictionary[frendKey] {
-            
-            return frendValues.count
-        }
+        return friendsList.count
         
-        return 0
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FrendCell.reuseId, for: indexPath) as? FrendCell else { fatalError("Cell cannot be dequeued") }
         
-        let frendKey = friendsSectionTitles[indexPath.section]
-        if friendsDictionary[frendKey] != nil {
-            cell.nameFrendLabel.text = filterFriends[indexPath.section].name
-            cell.avatarFrendImage.image = filterFriends[indexPath.section].avatarImageView
-        }
+        cell.nameFrendLabel.text = friendsList[indexPath.row].name + " " + friendsList[indexPath.row].lastname
+        cell.avatarFrendImage.kf.setImage(with: URL(string: friendsList[indexPath.row].avatarImage))
+        
         return cell
     }
     
-    func tableView(_  tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        
-        return friendsSectionTitles[section]
-    }
-    
-    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-    
-        return friendsSectionTitles
-    }
-    
-    //MARK: Search Bar
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        guard !searchText.isEmpty else {
-            filterFriends = friends.sorted { $0.name < $1.name }
-            sortFriends()
-            tableView.reloadData()
-            return
-        }
-        
-        filterFriends = friends.filter( {Friend -> Bool in
-            return Friend.name.lowercased().contains(searchText.lowercased())
-        })
-        filterFriends.sort { $0.name < $1.name }
-        sortFriends()
-        tableView.reloadData()
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        
-    }
-
-    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "Show Photo",
-            let frendPhotoVC = segue.destination as? FriendsPhotoViewController,
+        if segue.identifier == "FriendsProfileController",
+            let friendsProfileVC = segue.destination as? FriendsPhotoViewController,
             let indexPath = tableView.indexPathForSelectedRow {
-            let frendName = friends[indexPath.row].name
-            frendPhotoVC.friendName = frendName
+            
+            let friendProfileUserId = friendsList[indexPath.row].userid
+            let friendProfileName = friendsList[indexPath.row].name
+            let friendProfileLastname = friendsList[indexPath.row].lastname
+            
+            friendsProfileVC.friendProfileUserId = friendProfileUserId
+            friendsProfileVC.friendProfileName = friendProfileName
+            friendsProfileVC.friendProfileLastname = friendProfileLastname
         }
-    }
 
+    }
 }
