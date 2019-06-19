@@ -16,3 +16,16 @@ extension UIViewController {
         present(alertVC, animated: true)
     }
 }
+
+enum WeatherError: Error {
+    case cityNotFound(message: String)
+}
+
+extension WeatherError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .cityNotFound(let message):
+            return NSLocalizedString(message, comment: "")
+        }
+    }
+}

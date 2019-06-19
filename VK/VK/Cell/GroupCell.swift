@@ -21,4 +21,5 @@ class GroupCell: UITableViewCell {
         
         myGroupImage.layer.cornerRadius = myGroupImage.bounds.height/2
     }
+
 }

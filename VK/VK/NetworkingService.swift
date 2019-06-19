@@ -17,7 +17,7 @@ class NetworkingService {
     let userId = Account.shared.userId
     
     // MARK: - Load VKgroup
-    public func userGroups(completion: ((Swift.Result<[CodableGroup], Error>) -> Void)? = nil) {
+    public func userGroups(completion: ((Swift.Result<[Group], Error>) -> Void)? = nil) {
         
         let baseURL = "https://api.vk.com"
         let path = "/method/groups.get"
@@ -29,15 +29,10 @@ class NetworkingService {
         ]
         Alamofire.request(baseURL + path, method: .get, parameters: params).responseData { response in
             switch response.result {
-            case .success(let data):
-                let decoder = JSONDecoder()
-                do {
-                    let response = try decoder.decode(VKResponse.self, from: data)
-                    let groups = response.response.items
-                    completion?(.success(groups))
-                } catch {
-                    completion?(.failure(error))
-                }
+            case .success(let value):
+                let json = JSON(value)
+                let groups = json["response"]["items"].arrayValue.map {Group($0)}
+                completion?(.success(groups))
             case .failure(let error):
                 completion?(.failure(error))
             }

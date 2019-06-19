@@ -10,20 +10,21 @@ import Foundation
 import SwiftyJSON
 import RealmSwift
 
-class Group: Object, DipslayableGroup {
-    @objc dynamic var groupName: String = ""
-    @objc dynamic var groupImage: String = ""
-    
-    convenience init(groupName: String, groupImage: String) {
-        self.init()
-        self.groupName = groupName
-        self.groupImage = groupImage
-    }
+@objcMembers
+class Group: Object {
+    dynamic var id: Int = 0
+    dynamic var groupName: String = ""
+    dynamic var groupImage: String = ""
     
     convenience init(_ json: JSON) {
         self.init()
         
+        self.id = json["id"].intValue
         self.groupName = json["name"].stringValue
         self.groupImage = json["photo_200"].stringValue
+    }
+    
+    override static func primaryKey() -> String? {
+        return "id"
     }
 }

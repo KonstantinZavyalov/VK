@@ -7,23 +7,30 @@
 //
 
 import UIKit
-
+import RealmSwift
 
 class FriendsPhotoViewController: UICollectionViewController {
     
     let request = NetworkingService()
+    //let realm = try! Realm()
     
     public var friendProfileUserId: Int = 1
     public var friendProfileName = ""
     public var friendProfileLastname = ""
-    public var friendProfilePhoto = [FriendProfilePhoto]()
+    public var friendProfilePhoto: Results<FriendProfilePhoto> = try! Realm().objects(FriendProfilePhoto.self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         request.loadPhotos(friendProfileUserId) { result in
             switch result {
             case .success(let photoList):
-                self.friendProfilePhoto = photoList
+                let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
+                let realm = try! Realm(configuration: config)
+                
+                try! realm.write {
+                    realm.add(photoList, update: .modified)
+                }
+                print(realm.configuration.fileURL!)
                 self.collectionView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)

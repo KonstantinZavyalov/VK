@@ -25,6 +25,7 @@
 		445D589A227359A5008E8EC3 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445D5899227359A5008E8EC3 /* NewsCell.swift */; };
 		445D589C22736395008E8EC3 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445D589B22736395008E8EC3 /* News.swift */; };
 		446708AB22671A34006C40F9 /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446708AA22671A34006C40F9 /* LikeControl.swift */; };
+		446D32CF22BA48FD00A773D2 /* RealmProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446D32CE22BA48FD00A773D2 /* RealmProvider.swift */; };
 		44726D1322B682900022709A /* GroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44726D1222B6828F0022709A /* GroupResponse.swift */; };
 		4487251B227C8F1900DECB35 /* LoadingAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4487251A227C8F1900DECB35 /* LoadingAnimationView.swift */; };
 		4498622922677319006A2424 /* MusicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4498622822677319006A2424 /* MusicVC.swift */; };
@@ -68,6 +69,7 @@
 		445D5899227359A5008E8EC3 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		445D589B22736395008E8EC3 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		446708AA22671A34006C40F9 /* LikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl.swift; sourceTree = "<group>"; };
+		446D32CE22BA48FD00A773D2 /* RealmProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmProvider.swift; sourceTree = "<group>"; };
 		44726D1222B6828F0022709A /* GroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupResponse.swift; sourceTree = "<group>"; };
 		4487251A227C8F1900DECB35 /* LoadingAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingAnimationView.swift; sourceTree = "<group>"; };
 		4498622822677319006A2424 /* MusicVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicVC.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				44452534225206BB00F2CA3A /* AppDelegate.swift */,
 				44FE247622B150EF00271811 /* Account.swift */,
 				44FE247422B14FFE00271811 /* NetworkingService.swift */,
+				446D32CE22BA48FD00A773D2 /* RealmProvider.swift */,
 				442B0089225E4795005C6F4F /* Model */,
 				44C8D322225BD2E6006C6705 /* Controllers */,
 				44C8D321225BD2B8006C6705 /* UI */,
@@ -353,6 +356,7 @@
 				44FE247722B150EF00271811 /* Account.swift in Sources */,
 				442B008B225E48D8005C6F4F /* FrendPhotoViewController.swift in Sources */,
 				44F9B361228899DA00227ADE /* CustomAnimation.swift in Sources */,
+				446D32CF22BA48FD00A773D2 /* RealmProvider.swift in Sources */,
 				44C18594225E02DC004E53D8 /* FrendCell.swift in Sources */,
 				4498622922677319006A2424 /* MusicVC.swift in Sources */,
 				4487251B227C8F1900DECB35 /* LoadingAnimationView.swift in Sources */,

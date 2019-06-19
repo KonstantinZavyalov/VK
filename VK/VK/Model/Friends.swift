@@ -10,19 +10,13 @@ import UIKit
 import SwiftyJSON
 import RealmSwift
 
+@objcMembers
 class FriendProfile: Object {
-    @objc dynamic var userid: Int = 0
-    @objc dynamic var name: String = ""
-    @objc dynamic var lastname: String = ""
-    @objc dynamic var avatarImage: String = ""
     
-    convenience init(userid: Int, name: String, lastname: String, avatarImage: String) {
-        self.init()
-        self.userid = userid
-        self.name = name
-        self.lastname = lastname
-        self.avatarImage = avatarImage
-    }
+    dynamic var userid: Int = 0
+    dynamic var name: String = ""
+    dynamic var lastname: String = ""
+    dynamic var avatarImage: String = ""
     
     convenience init(_ json: JSON) {
         self.init()
@@ -33,17 +27,16 @@ class FriendProfile: Object {
         self.avatarImage = json["photo_200_orig"].stringValue
     }
     
+    override static func primaryKey() -> String? {
+        return "userid"
+    }
 }
 
+@objcMembers
 class FriendProfilePhoto: Object {
-    @objc dynamic var userid: Int = 0
-    @objc dynamic var photo: String = ""
-    
-    convenience init(userid: Int, photo: String) {
-        self.init()
-        self.userid = userid
-        self.photo = photo
-    }
+   
+    dynamic var userid: Int = 0
+    dynamic var photo: String = ""
     
     convenience init(_ json: JSON) {
         self.init()
@@ -51,4 +44,7 @@ class FriendProfilePhoto: Object {
         self.photo = json["sizes"][3]["url"].stringValue
     }
     
+    override static func primaryKey() -> String? {
+        return "photo"
+    }
 }
