@@ -7,66 +7,52 @@
 //
 
 import UIKit
+import AVKit
 
-class MusicVC: UIViewController, UITableViewDataSource {
+class MusicVC: UIViewController {
     
-    public var playList: [Music] = [
-        Music(name: "Novella", coverImageView: UIImage(named: "backgraund")!, duration: "03:17"),
-        Music(name: "Rockstar", coverImageView: UIImage(named: "backgraund")!, duration: "04:02"),
-        Music(name: "Drunk Groove", coverImageView: UIImage(named: "backgraund")!, duration: "03:58"),
-        Music(name: "Jonas Brothers", coverImageView: UIImage(named: "backgraund")!, duration: "02:43"),
-        Music(name: "Dua Lipa & BLACKPINK", coverImageView: UIImage(named: "backgraund")!, duration: "03:55"),
-        Music(name: "Rita Ora", coverImageView: UIImage(named: "backgraund")!, duration: "03:36"),
-        Music(name: "Самоучитель Swift 856 издание", coverImageView: UIImage(named: "backgraund")!, duration: "93:56"),
-        Music(name: "LP", coverImageView: UIImage(named: "backgraund")!, duration: "04:12"),
-        Music(name: "Artik & Asti", coverImageView: UIImage(named: "backgraund")!, duration: "02:38"),
-        Music(name: "MARUV", coverImageView: UIImage(named: "backgraund")!, duration: "03:47"),
-        Music(name: "Arnon", coverImageView: UIImage(named: "backgraund")!, duration: "03:03")
-    ]
+    var audioPlayer: AVAudioPlayer!
     
-    @IBOutlet var tableView: UITableView! {
-        didSet {
-            tableView.dataSource = self
+    func playSound() {
+        do {
+            self.audioPlayer =  try AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: Bundle.main.path(forResource: "Александр Маршал - Счастье", ofType: "mp3")!) as URL)
+            self.audioPlayer.play()
+            
+        } catch {
+            print("Error")
         }
     }
     
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return playList.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MusicCell.reuseId, for: indexPath) as? MusicCell else { fatalError() }
+    @IBAction func playButton(_ sender: Any) {
         
-        cell.nameMusicLabel.text = playList[indexPath.row].name
-        cell.durationLabel.text = playList[indexPath.row].duration
-        if let image = playList[indexPath.row].coverImageView {
-            cell.coverImageView.image = image
-        }
+        let pulse =  CASpringAnimation(keyPath: "transform.scale")
+            pulse.duration =  0.3
+            pulse.fromValue = 0.95
+            pulse.toValue = 1.0
+            pulse.initialVelocity = 0.1
+            pulse.damping = 1.0
         
-        return cell
+        (sender as AnyObject).layer.add(pulse, forKey: "pulse")
+        playSound()
+    }
+    @IBAction func pauseBatton(_ sender: Any) {
+        
+        let pulse =  CASpringAnimation(keyPath: "transform.scale")
+        pulse.duration =  0.3
+        pulse.fromValue = 0.95
+        pulse.toValue = 1.0
+        pulse.initialVelocity = 0.1
+        pulse.damping = 1.0
+        
+        (sender as AnyObject).layer.add(pulse, forKey: "pulse")
+        audioPlayer.pause()
     }
     
-    // Override to support editing the table view.
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            playList.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
-    }
-    
-    @IBAction func playErrorButton(_ sender: Any) {
-        let alertController = UIAlertController(title: "😔", message: "Прослушивание музыки ограничено. Для снятия ограничения воспользуйтесь подпиской.", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Cнять ограничение", style: .default) { (actoin) in }
-        let actionTwo = UIAlertAction(title: "Напомнить позже", style: .default)
+    @IBAction func helpButton(_ sender: Any) {
+        let alertController = UIAlertController(title: "VK:", message: "С 16 декабря 2016 года мы отключаем публичный API для работы с аудиозаписями.", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Блин 😔", style: .default) { (actoin) in }
         
         alertController.addAction(action)
-        alertController.addAction(actionTwo)
         self.present(alertController, animated: true, completion: nil)
     }
 }

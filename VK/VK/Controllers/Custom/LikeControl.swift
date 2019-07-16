@@ -12,8 +12,8 @@ class LikeControl: UIControl {
     
     public var isLiked: Bool = false
     let heartImageView = UIImageView()
-    var likeCountLabel = UILabel()
-    var count: Int = 0
+    //var likeCountLabel = UILabel()
+    //var count: Int = 0
     
     override init(frame: CGRect) {
         super .init(frame: frame)
@@ -33,16 +33,16 @@ class LikeControl: UIControl {
         self.addGestureRecognizer(tapGR)
         
         addSubview(heartImageView)
-        addSubview(likeCountLabel)
+        //addSubview(likeCountLabel)
         heartImageView.image = UIImage(named: "heart_empty")
-        likeCountLabel.text = "\(count)"
+        //likeCountLabel.text = "\(count)"
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        heartImageView.frame = CGRect(x: 0, y: 0, width: bounds.width/1.7, height: bounds.height)
-        likeCountLabel.frame = CGRect(x: bounds.width/1.5, y: 0, width: bounds.width/2, height: bounds.height)
+        heartImageView.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height)
+//        likeCountLabel.frame = CGRect(x: bounds.width/1.5, y: 0, width: bounds.width/2, height: bounds.height)
     }
 
     //MARK: - Privates
@@ -57,13 +57,13 @@ class LikeControl: UIControl {
             self.heartImageView.alpha = 1
         })
 
-        if isLiked == true {
-            count += 1
-            likeCountLabel.text = "\(count)"
-        }; if isLiked == false {
-            count -= 1
-            likeCountLabel.text = "\(count)"
-        }
+//        if isLiked == true {
+//            count += 1
+//            likeCountLabel.text = "\(count)"
+//        }; if isLiked == false {
+//            count -= 1
+//            likeCountLabel.text = "\(count)"
+//        }
     }
     
 }

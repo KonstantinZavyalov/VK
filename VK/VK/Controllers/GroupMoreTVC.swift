@@ -17,7 +17,6 @@ class GroupMoreTVC: UITableViewController {
         }
     }
     
-    var searchingText = "Something"
     let request = NetworkingService()
     public var groupList = [Group]()
     
@@ -29,10 +28,8 @@ class GroupMoreTVC: UITableViewController {
         view.addGestureRecognizer(tapGR)
     }
     
-    // MARK: - Table view data source
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        
         return groupList.count
     }
     
@@ -46,7 +43,6 @@ class GroupMoreTVC: UITableViewController {
         return cell
     }
     
-    // MARK: - Helpers
     @objc func dissmissKeyboard() {
         view.endEditing(true)
     }

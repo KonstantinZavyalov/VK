@@ -11,24 +11,41 @@ import SwiftyJSON
 import RealmSwift
 
 @objcMembers
-class FriendProfile: Object {
+final class Friend: Object {
     
-    dynamic var userid: Int = 0
-    dynamic var name: String = ""
+    dynamic var id: Int = 0
+    dynamic var firstname: String = ""
     dynamic var lastname: String = ""
-    dynamic var avatarImage: String = ""
+    dynamic var friendname: String = ""
+    dynamic var avatar: String = ""
+    dynamic var city: String = ""
+    dynamic var state: Int = 0
+    dynamic var gender: Int = 0
+    
+    convenience init(id: Int, firstname: String, lastname: String, avatar: String) {
+        self.init()
+        self.id = id
+        self.firstname = firstname
+        self.lastname = lastname
+        self.avatar = avatar
+    }
     
     convenience init(_ json: JSON) {
         self.init()
         
-        self.userid = json["id"].intValue
-        self.name = json["first_name"].stringValue
+        self.id = json["id"].intValue
+        self.firstname = json["first_name"].stringValue
         self.lastname = json["last_name"].stringValue
-        self.avatarImage = json["photo_200_orig"].stringValue
+        self.friendname = "\(firstname) \(lastname)"
+        self.avatar = json["photo_100"].stringValue
+        self.city = json["city"]["title"].stringValue
+        self.state = json["online"].intValue
+        self.gender = json["sex"].intValue
     }
     
+    
     override static func primaryKey() -> String? {
-        return "userid"
+        return "id"
     }
 }
 
@@ -37,6 +54,12 @@ class FriendProfilePhoto: Object {
    
     dynamic var userid: Int = 0
     dynamic var photo: String = ""
+    
+    convenience init(userid: Int, photo: String) {
+        self.init()
+        self.userid = userid
+        self.photo = photo
+    }
     
     convenience init(_ json: JSON) {
         self.init()

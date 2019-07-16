@@ -7,30 +7,24 @@
 //
 
 import UIKit
+import Kingfisher
 import RealmSwift
 
 class FriendsPhotoViewController: UICollectionViewController {
     
     let request = NetworkingService()
-    //let realm = try! Realm()
     
     public var friendProfileUserId: Int = 1
     public var friendProfileName = ""
     public var friendProfileLastname = ""
-    public var friendProfilePhoto: Results<FriendProfilePhoto> = try! Realm().objects(FriendProfilePhoto.self)
+    public var friendProfilePhoto = [FriendProfilePhoto]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         request.loadPhotos(friendProfileUserId) { result in
             switch result {
             case .success(let photoList):
-                let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
-                let realm = try! Realm(configuration: config)
-                
-                try! realm.write {
-                    realm.add(photoList, update: .modified)
-                }
-                print(realm.configuration.fileURL!)
+                self.friendProfilePhoto = photoList
                 self.collectionView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
@@ -46,7 +40,6 @@ class FriendsPhotoViewController: UICollectionViewController {
         
     }
     
-    // MARK: UICollectionViewDataSource
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return friendProfilePhoto.count
@@ -55,10 +48,18 @@ class FriendsPhotoViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FrendPhotoCell.reuseId, for: indexPath) as? FrendPhotoCell else { fatalError() }
         
-        // Configure the cell
         cell.iconImageView.kf.setImage(with: URL(string: friendProfilePhoto[indexPath.row].photo))
         
         return cell
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowPhoto",
+            let friendsBigPhotoVC = segue.destination as? PhotoFullSizeVC {
+            let bigPhoto = friendProfilePhoto
+            friendsBigPhotoVC.friendProfilePhoto = bigPhoto
+            
+        }
+        
+    }
 }

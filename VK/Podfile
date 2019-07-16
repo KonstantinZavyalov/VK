@@ -2,9 +2,8 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'VK' do
-pod 'Alamofire', '~> 4.8.2'
+  pod 'Alamofire', '~> 4.8.2'
   pod 'SwiftyJSON', '~> 5.0.0'
-  pod 'Kingfisher', '~> 5.5.0'
+  pod 'Kingfisher', '~> 5.6.0'
   pod 'RealmSwift', '~> 3.16.1'
-
 end

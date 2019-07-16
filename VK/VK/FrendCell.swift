@@ -16,6 +16,14 @@ class FrendCell: UITableViewCell {
     @IBOutlet var nameFrendLabel: UILabel!
     @IBOutlet var avatarFrendImage: UIImageView!
     
+    public func configure(with friend: Friend) {
+        let friendname = "\(friend.firstname) \(friend.lastname)"
+        nameFrendLabel.text = friendname
+        
+        let iconUrlString = friend.avatar
+        avatarFrendImage.kf.setImage(with: URL(string: iconUrlString))
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         

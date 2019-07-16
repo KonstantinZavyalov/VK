@@ -7,88 +7,98 @@
 //
 
 import UIKit
+import Kingfisher
+import RealmSwift
 
-class PhotoFullSizeVC: UIViewController {
+private let reuseIdentifier = "Cell"
+
+class PhotoFullSizeVC: UICollectionViewController {
     
-    var images = [
-        UIImage(named: "PO")!,
-        UIImage(named: "Minion")!,
-        UIImage(named: "Maks")!,
-        UIImage(named: "Kot_Bazilio")!
-    ]
-    var currentIndex: Int = 0
-    
-    @IBOutlet weak var swipeImages: UIImageView!
+    public var friendProfilePhoto = [FriendProfilePhoto]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let leftSwipe =  UISwipeGestureRecognizer(target: self, action: #selector(swipeImage(_:)))
-        let rightSwipe =  UISwipeGestureRecognizer(target: self, action: #selector(swipeImage(_:)))
-        let downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeImage(_:)))
+        setupScrollViev()
         
-        leftSwipe.direction = .left
-        rightSwipe.direction = .right
-        downSwipe.direction = .down
+        let swipeGR = UISwipeGestureRecognizer(target: self, action: #selector(swipePhoto))
+        swipeGR.direction = [.left, .right]
+        view.addGestureRecognizer(swipeGR)
         
-        view.addGestureRecognizer(leftSwipe)
-        view.addGestureRecognizer(rightSwipe)
-        view.addGestureRecognizer(downSwipe)
     }
     
-    @objc func swipeImage (_ sender:UISwipeGestureRecognizer) {
+    @objc func swipePhoto(_ recognizer: UISwipeGestureRecognizer) {
+        switch recognizer.state {
+        case .began:
+            print("begin")
+        case .cancelled:
+            print("cancel")
+        case .changed:
+            print("change")
+        case .ended:
+            print("ended")
+        case .possible:
+            print("possible")
+        default:
+            print("error")
+        }
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return friendProfilePhoto.count
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BigPhotoCell.reuseID
+                , for: indexPath) as? BigPhotoCell else { fatalError() }
         
-        if (sender.direction == .left) {
-            print("Swipe Left")
-            
-            let animation = CABasicAnimation(keyPath: "transform.scale")
-            animation.toValue = NSNumber(value: 0.9)
-            animation.duration = 0.2
-            animation.repeatCount = 0
-            animation.autoreverses = true
-            
-            swipeImages.layer.add(animation, forKey: nil)
-            
-            let transition = CATransition()
-            transition.duration = 0.4
-            transition.type = CATransitionType.reveal
-            transition.subtype = CATransitionSubtype.fromRight
-            swipeImages.layer.add(transition, forKey: kCATransition)
-            
-            guard currentIndex < images.count - 1 else { return }
-            
-            currentIndex += 1
-            swipeImages.image = images [currentIndex]
+        cell.bigFriendPhoto.kf.setImage(with: URL(string: friendProfilePhoto[indexPath.row].photo))
+        
+        return cell
+    }
+    
+    func setupScrollViev() {
+        
+        let size = CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+        let layout = collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: size.width, height: size.height)
+        layout.sectionHeadersPinToVisibleBounds = true
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        collectionView.backgroundColor = .black
+        
+        collectionView.isPagingEnabled = true
+        
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        cell.contentView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        let propertyAnimator = UIViewPropertyAnimator(duration: 0.6, curve: .easeOut) {
+            cell.contentView.transform = .identity
         }
         
-        if (sender.direction == .right) {
-            print("Swipe Right")
-            
-            let animation = CABasicAnimation(keyPath: "transform.scale")
-            animation.toValue = NSNumber(value: 0.9)
-            animation.duration = 0.2
-            animation.repeatCount = 0
-            animation.autoreverses = true
-            
-            swipeImages.layer.add(animation, forKey: nil)
-
-            let transition = CATransition()
-            transition.duration = 0.4
-            transition.type = CATransitionType.reveal
-            transition.subtype = CATransitionSubtype.fromLeft
-            swipeImages.layer.add(transition, forKey: kCATransition)
-            
-            guard currentIndex >= 1 else { return }
-            
-            currentIndex -= 1
-            swipeImages.image = images [currentIndex]
-        }
+        propertyAnimator.startAnimation()
         
-        if (sender.direction == .down) {
-            print("Swipe Down")
-            
-            self.dismiss(animated: true, completion: nil)
-        }
+    }
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        
+        let cell = collectionView.cellForItem(at: indexPath)
+        UIView.animate(withDuration: 0.1, delay: 0, options: [.curveLinear, .curveEaseOut], animations: {
+            cell!.contentView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        }, completion: nil)
+        
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        
+        let cell = collectionView.cellForItem(at: indexPath)
+        
+        UIView.animate(withDuration: 0.1, delay: 0, options: [.curveLinear, .curveEaseIn], animations: {
+            cell!.contentView.transform = .identity
+        }, completion: nil)
         
     }
     

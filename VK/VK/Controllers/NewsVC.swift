@@ -7,13 +7,12 @@
 //
 
 import UIKit
+import Kingfisher
 
 class NewsVC: UIViewController, UITableViewDataSource {
     
-
-    public var newspapper: [News] = [
-        News(avatarImageView: UIImage(named: "Swift")!, nameGroup: "Swift", descript: "Сегодня мы ввели нововведения!")
-    ]
+    let request = NetworkingService()
+    public var newsList: [News] = []
     
     
     @IBOutlet var tableView: UITableView! {
@@ -24,28 +23,40 @@ class NewsVC: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        request.loadNews() { result in
+            switch result {
+            case .success(let newsList):
+                self.newsList = newsList
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
+    }
 
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return newsList.count
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return newspapper.count
-    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsCell.reuseId, for: indexPath) as? NewsCell else { fatalError() }
         
-        if let image = newspapper[indexPath.row].avatarImageView {
-            cell.avatarImageView.image = image
+        if newsList[indexPath.row].textNewsLabel != "" {
+            cell.textNewsLabel.text = String(newsList[indexPath.row].textNewsLabel)
         }
-        cell.nameGroupLabel.text = newspapper[indexPath.row].nameGroup
-        cell.descriptionLabel.text = newspapper[indexPath.row].descript
-//        if let image = newspapper[indexPath.row].addDescriptionImageView {
-//            cell.addDescriptionImageView.image = image
-//        }
+        cell.likeCountLabel.text = String(newsList[indexPath.row].likeCounts)
+        cell.imageNewsView.kf.setImage(with: URL(string: newsList[indexPath.row].newsPhotos))
         
         return cell
     }
-
+    
+    //MARK: активные кнопки под новостями
+    
+    // Репост
     @IBAction func repostButton(_ sender: Any) {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let actionFrends = UIAlertAction(title: "Рассказать друзьям", style: .default) { (actoin) in }
@@ -60,6 +71,7 @@ class NewsVC: UIViewController, UITableViewDataSource {
         self.present(alertController, animated: true, completion: nil)
     }
     
+    // Комментарий
     @IBAction func comentButton(_ sender: Any) {
         let alertController = UIAlertController(title: "💬💬💬", message: "Напишите свой комментарий", preferredStyle: .alert)
         let actionComent = UIAlertAction(title: "Поделится", style: .default) { (actoin) in

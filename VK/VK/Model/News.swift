@@ -7,23 +7,17 @@
 //
 
 import UIKit
-//import RealmSwift
-//
-//class News: Object {
-//    @objc dynamic var avatarImageView: UIImage?
-//    @objc dynamic var nameGroup: String = ""
-//    @objc dynamic var descript: String = ""
-//
-//    convenience init(avatarImageView: UIImage, nameGroup: String, descript: String) {
-//        self.init()
-//        self.avatarImageView = avatarImageView
-//        self.nameGroup = nameGroup
-//        self.descript = descript
-//    }
-//
-//}
+import SwiftyJSON
+
 struct News {
-    let avatarImageView: UIImage?
-    let nameGroup: String
-    let descript: String
+    
+    let textNewsLabel: String
+    let likeCounts: Int
+    let newsPhotos: String
+    
+    init(_ json: JSON) {
+        textNewsLabel = json["text"].stringValue
+        likeCounts = json["likes"]["count"].intValue
+        newsPhotos = json["attachments"][0]["photo"]["sizes"][3]["url"].stringValue
+    }
 }
